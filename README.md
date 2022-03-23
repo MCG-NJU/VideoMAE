@@ -1,4 +1,4 @@
-# VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training
+# Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training
 
 ![VideoMAE Framework](figs/videomae.png)
 
