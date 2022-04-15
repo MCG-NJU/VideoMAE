@@ -11,15 +11,16 @@
 > [**VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training**](https://arxiv.org/abs/2203.12602)<br>
 > [Zhan Tong](https://github.com/yztongzhan), [Yibing Song](https://ybsong00.github.io/), [Jue Wang](https://juewang725.github.io/), [Limin Wang](http://wanglimin.github.io/)<br>Nanjing University, Tencent AI Lab
 
-## News
+## 📰 News
 
-Code and pre-trained models will be released here. Welcome to **watch** this repository for the latest updates.
+**[2022.4.15]** The **[LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE)** of this project has been upgraded to CC-BY-NC 4.0. 
+**[2022.3.24]** Code and pre-trained models will be released here. Welcome to **watch** this repository for the latest updates.
 
 
 
-## Main Results
+## 🚀 Main Results
 
-### Something-Something V2
+### ✨ Something-Something V2
 
 |  Method  | Extra Data | Backbone | Frames x Clips x Crops | Top-1 | Top-5 |
 | :------: | :--------: | :------: | :--------------------: | :---: | :---: |
@@ -29,7 +30,7 @@ Code and pre-trained models will be released here. Welcome to **watch** this rep
 
 
 
-### Kinetics-400
+### ✨ Kinetics-400
 
 |  Method  |  Extra Data  | Backbone | Frames x Clips x Crops | Top-1 | Top-5 |
 | :------: | :----------: | :------: | :--------------------: | :---: | :---: |
@@ -39,7 +40,7 @@ Code and pre-trained models will be released here. Welcome to **watch** this rep
 
 
 
-### UCF101 & HMDB51
+### ✨ UCF101 & HMDB51
 
 |  Method  |  Extra Data  | Backbone | UCF101 | HMDB51 |
 | :------: | :----------: | :------: | :----: | :----: |
@@ -48,15 +49,21 @@ Code and pre-trained models will be released here. Welcome to **watch** this rep
 
 
 
-## Contact 
+## ☎️ Contact 
 
 Zhan Tong: tongzhan@smail.nju.edu.cn
 
-## Acknowledgement
+## 👍 Acknowledgement
 
 Thanks [Ziteng Gao](https://sebgao.github.io/), Lei Chen and [Chongjian Ge](https://chongjiange.github.io/) for their help.
 
-## Citation
+## 🔒 License
+
+This project is released under the CC-BY-NC 4.0 license as found in the [LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE) file.
+
+## ✏️ Citation
+
+If you think our work is useful, please feel free to cite our paper:
 
 ```
 @article{videomae,
