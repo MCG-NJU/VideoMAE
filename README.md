@@ -13,7 +13,7 @@
 
 ## 📰 News
 
-**[2022.4.15]** The **[LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE)** of this project has been upgraded to CC-BY-NC 4.0. 
+**[2022.4.15]** The **[LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE)** of this project has been upgraded to CC-BY-NC 4.0. <br>
 **[2022.3.24]** Code and pre-trained models will be released here. Welcome to **watch** this repository for the latest updates.
 
 
