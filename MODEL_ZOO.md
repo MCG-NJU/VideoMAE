@@ -1,7 +1,5 @@
 # VideoMAE Model Zoo
 
-------
-
 ### Kinetics-400
 
 |  Method  | Extra Data | Backbone | Epoch | \#Frame |                          Pre-train                           |                          Fine-tune                           | Top-1 | Top-5 |

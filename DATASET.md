@@ -1,7 +1,5 @@
 # Data Preparation
 
-------
-
 We have successfully pre-trained and fine-tuned our VideoMAE on [Kinetics400](https://deepmind.com/research/open-source/kinetics), [Something-Something-V2](https://developer.qualcomm.com/software/ai-datasets/something-something), [UCF101](https://www.crcv.ucf.edu/data/UCF101.php) and [HMDB51](https://serre-lab.clps.brown.edu/resource/hmdb-a-large-human-motion-database/) with this codebase.
 
 - The pre-processing of **Something-Something-V2** can be summarized into 3 steps:

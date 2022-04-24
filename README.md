@@ -77,7 +77,7 @@ We provide pre-trained and fine-tuned models in [MODEL_ZOO.md](MODEL_ZOO.md).
 
 ## 👀 Visualization
 
-We provide the script for visualization in[` vis.sh`](vis.sh).  Colab notebook for better visualization is coming soon.
+We provide the script for visualization in [`vis.sh`](vis.sh).  Colab notebook for better visualization is coming soon.
 
 ## ☎️ Contact 
 

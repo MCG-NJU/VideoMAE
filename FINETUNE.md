@@ -1,7 +1,5 @@
 # Fine-tuning VideoMAE 
 
-------
-
 ## Original Implementation
 
 The implementation of our VideoMAE supports **multi-node distributed training**. We provide the **off-the-shelf** scripts in the [scripts folder](scripts).
