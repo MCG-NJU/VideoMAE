@@ -85,7 +85,7 @@ Zhan Tong: tongzhan@smail.nju.edu.cn
 
 ## 👍 Acknowledgements
 
-Thanks to [Ziteng Gao](https://sebgao.github.io/), Lei Chen and [Chongjian Ge](https://chongjiange.github.io/) for their kindly support.
+Thanks to [Ziteng Gao](https://sebgao.github.io/), Lei Chen and [Chongjian Ge](https://chongjiange.github.io/) for their kindly support.<br>
 This project is built upon [MAE-pytorch](https://github.com/pengzhiliang/MAE-pytorch) and [BEiT](https://github.com/microsoft/unilm/tree/master/beit). Thanks to the contributors of these great codebases.
 
 ## 🔒 License

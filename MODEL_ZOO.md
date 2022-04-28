@@ -18,7 +18,7 @@
 
 ### Note:
 
-- \#Frame = #input_frame x #crop x #clip.
+- \#Frame = #input_frame x #clip x #crop.
 - \#input_frame means how many frames are input for model during the test phase.
 - \#crop means spatial crops (e.g., 3 for left/right/center crop).
 - \#clip means temporal clips (e.g., 5 means repeted temporal sampling five clips with different start indices).

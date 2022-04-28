@@ -7,7 +7,7 @@ The implementation of our VideoMAE supports **multi-node distributed training**.
 -  For example, to pre-train VideoMAE ViT-Base on **Something-Something V2** with 64 GPUs (8 nodes x 8 GPUs), you can run
 
   ```bash
-  OUTPUT_DIR='YOUR_PATH/ssv2_videomae_pretrain_base_patch16_224_frame_16x4_tube_mask_ratio_0.9_e800'
+  OUTPUT_DIR='YOUR_PATH/ssv2_videomae_pretrain_base_patch16_224_frame_16x2_tube_mask_ratio_0.9_e800'
   DATA_PATH='YOUR_PATH/list_ssv2/train.csv'
   
   OMP_NUM_THREADS=1 python -m torch.distributed.launch --nproc_per_node=8 \

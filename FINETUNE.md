@@ -78,9 +78,9 @@ The implementation of our VideoMAE supports **multi-node distributed training**.
 
 ### Note:
 
+- We didn't use `cls token` in our implementation, and directly average the feature of last layer for video classification.
 - Here total batch size = (`batch_size` per gpu) x `nodes` x (gpus per node).
 - `lr` here is the base learning rate. The ` actual lr` is computed by the [linear scaling rule](https://arxiv.org/abs/1706.02677): `` actual lr`` = `lr` * total batch size / 256.
-- 
 
 ## Slurm
 

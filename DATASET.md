@@ -6,9 +6,9 @@ We have successfully pre-trained and fine-tuned our VideoMAE on [Kinetics400](ht
 
   1. Download the dataset from [official website](https://developer.qualcomm.com/software/ai-datasets/something-something).
 
-  2. Preprocess the dataset by changing the video extension to .mp4 and resizing the short edge of video to **256px**. You can refer to this [script](https://github.com/open-mmlab/mmaction2/blob/master/tools/data/resize_videos.py) for help. 
+  2. Preprocess the dataset by changing the video extension to `.mp4` and resizing the short edge of video to **256px**. You can refer to this [script](https://github.com/open-mmlab/mmaction2/blob/master/tools/data/resize_videos.py) for help.
 
-  3. Generate annotations needed for dataloader ("<path_to_video> <video_class>" in annotations). The annotation usually includes train.csv, val.csv and test.csv ( here test.csv is the same as val.csv). The format of *.csv file is like:
+  3. Generate annotations needed for dataloader ("<path_to_video> <video_class>" in annotations). The annotation usually includes `train.csv`, `val.csv` and `test.csv` ( here `test.csv` is the same as `val.csv`). The format of `*.csv` file is like:
 
      ```
      dataset_root/video_1.mp4  label_1
@@ -24,7 +24,7 @@ We have successfully pre-trained and fine-tuned our VideoMAE on [Kinetics400](ht
 
   2. Preprocess the dataset by resizing the short edge of video to **320px**. You can refer to [MMAction2 Data Benchmark](https://github.com/open-mmlab/mmaction2) for [TSN](https://github.com/open-mmlab/mmaction2/tree/master/configs/recognition/tsn#kinetics-400-data-benchmark-8-gpus-resnet50-imagenet-pretrain-3-segments) and [SlowOnly](https://github.com/open-mmlab/mmaction2/tree/master/configs/recognition/slowonly#kinetics-400-data-benchmark).
 
-  3. Generate annotations needed for dataloader ("<path_to_video> <video_class>" in annotations). The annotation usually includes train.csv, val.csv and test.csv ( here test.csv is the same as val.csv). The format of *.csv file is like:
+  3. Generate annotations needed for dataloader ("<path_to_video> <video_class>" in annotations). The annotation usually includes `train.csv`, `val.csv` and `test.csv` ( here `test.csv` is the same as `val.csv`). The format of `*.csv` file is like:
 
      ```
      dataset_root/video_1.mp4  label_1
