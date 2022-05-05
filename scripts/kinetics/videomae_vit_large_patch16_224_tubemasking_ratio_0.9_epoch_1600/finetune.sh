@@ -14,6 +14,7 @@ OMP_NUM_THREADS=1 python3 -m torch.distributed.launch --nproc_per_node=8 \
     --master_port 12320 --nnodes=8  --node_rank=$1 --master_addr=$2 \
     run_class_finetuning.py \
     --model vit_large_patch16_224 \
+    --data_set Kinetics-400 \
     --data_path ${DATA_PATH} \
     --finetune ${MODEL_PATH} \
     --log_dir ${OUTPUT_DIR} \
