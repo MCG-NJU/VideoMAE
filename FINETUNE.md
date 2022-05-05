@@ -17,6 +17,7 @@ The implementation of our VideoMAE supports **multi-node distributed training**.
       run_class_finetuning.py \
       --model vit_base_patch16_224 \
       --data_set SSV2 \
+      --nb_classes 174 \
       --data_path ${DATA_PATH} \
       --finetune ${MODEL_PATH} \
       --log_dir ${OUTPUT_DIR} \
@@ -54,6 +55,7 @@ The implementation of our VideoMAE supports **multi-node distributed training**.
       run_class_finetuning.py \
       --model vit_base_patch16_224 \
       --data_set Kinetics-400 \
+      --nb_classes 400 \
       --data_path ${DATA_PATH} \
       --finetune ${MODEL_PATH} \
       --log_dir ${OUTPUT_DIR} \
@@ -119,6 +121,7 @@ srun -p $PARTITION \
         python -u run_class_finetuning.py \
         --model vit_base_patch16_224 \
         --data_set Kinetics-400 \
+        --nb_classes 400 \
         --data_path ${DATA_PATH} \
         --finetune ${MODEL_PATH} \
         --log_dir ${OUTPUT_DIR} \
