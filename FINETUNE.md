@@ -7,9 +7,9 @@ The implementation of our VideoMAE supports **multi-node distributed training**.
 -  For example, to fine-tune VideoMAE ViT-Base on **Something-Something V2** with 64 GPUs (8 nodes x 8 GPUs), you can run
 
   ```bash
-  OUTPUT_DIR='YOUR_PATH/ssv2_videomae_pretrain_base_patch16_224_frame_16x2_tube_mask_ratio_0.9_e2400/eval_lr_1e-3_epoch_40'
+  OUTPUT_DIR='YOUR_PATH/ssv2_videomae_pretrain_base_patch16_224_frame_16x2_tube_mask_ratio_0.9_e800/eval_lr_5e-4_epoch_50'
   DATA_PATH='YOUR_PATH/list_ssv2'
-  MODEL_PATH='YOUR_PATH/ssv2_videomae_pretrain_base_patch16_224_frame_16x2_tube_mask_ratio_0.9_e2400/checkpoint-2399.pth'
+  MODEL_PATH='YOUR_PATH/ssv2_videomae_pretrain_base_patch16_224_frame_16x2_tube_mask_ratio_0.9_e800/checkpoint-799.pth'
   
   OMP_NUM_THREADS=1 python -m torch.distributed.launch --nproc_per_node=8 \
       --master_port 12320 --nnodes=8 \
@@ -28,12 +28,11 @@ The implementation of our VideoMAE supports **multi-node distributed training**.
       --short_side_size 224 \
       --save_ckpt_freq 10 \
       --num_frames 16 \
-      --sampling_rate 2 \
       --opt adamw \
-      --lr 1e-3 \
+      --lr 5e-4 \
       --opt_betas 0.9 0.999 \
       --weight_decay 0.05 \
-      --epochs 40 \
+      --epochs 50 \
       --dist_eval \
       --test_num_segment 2 \
       --test_num_crop 3 \
@@ -82,6 +81,7 @@ The implementation of our VideoMAE supports **multi-node distributed training**.
 
 ### Note:
 
+- We perform the **I3D dense sampling** on **Kinetics400** and **uniform sampling** on **Something-Something V2**, respectively.
 - We didn't use `cls token` in our implementation, and directly average the feature of last layer for video classification.
 - Here total batch size = (`batch_size` per gpu) x `nodes` x (gpus per node).
 - `lr` here is the base learning rate. The ` actual lr` is computed by the [linear scaling rule](https://arxiv.org/abs/1706.02677): `` actual lr`` = `lr` * total batch size / 256.

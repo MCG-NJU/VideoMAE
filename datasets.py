@@ -3,11 +3,13 @@ from torchvision import transforms
 from transforms import *
 from masking_generator import TubeMaskingGenerator
 from kinetics import VideoClsDataset, VideoMAE
+from ssv2 import SSVideoClsDataset
+
 
 class DataAugmentationForVideoMAE(object):
     def __init__(self, args):
-        self.input_mean = [0.485, 0.456, 0.406] # IMAGENET_DEFAULT_MEAN
-        self.input_std = [0.229, 0.224, 0.225] # IMAGENET_DEFAULT_STD
+        self.input_mean = [0.485, 0.456, 0.406]  # IMAGENET_DEFAULT_MEAN
+        self.input_std = [0.229, 0.224, 0.225]  # IMAGENET_DEFAULT_STD
         normalize = GroupNormalize(self.input_mean, self.input_std)
         self.train_augmentation = GroupMultiScaleCrop(args.input_size, [1, .875, .75, .66])
         self.transform = transforms.Compose([                            
@@ -22,7 +24,7 @@ class DataAugmentationForVideoMAE(object):
             )
 
     def __call__(self, images):
-        process_data , _ = self.transform(images)
+        process_data, _ = self.transform(images)
         return process_data, self.masked_position_generator()
 
     def __repr__(self):
@@ -56,10 +58,10 @@ def build_dataset(is_train, test_mode, args):
     if args.data_set == 'Kinetics-400':
         mode = None
         anno_path = None
-        if is_train == True:
+        if is_train is True:
             mode = 'train'
             anno_path = os.path.join(args.data_path, 'train.csv')
-        elif test_mode == True:
+        elif test_mode is True:
             mode = 'test'
             anno_path = os.path.join(args.data_path, 'val.csv') 
         else:  
@@ -87,23 +89,22 @@ def build_dataset(is_train, test_mode, args):
     elif args.data_set == 'SSV2':
         mode = None
         anno_path = None
-        if is_train == True:
+        if is_train is True:
             mode = 'train'
             anno_path = os.path.join(args.data_path, 'train.csv')
-        elif test_mode == True:
+        elif test_mode is True:
             mode = 'test'
             anno_path = os.path.join(args.data_path, 'val.csv') 
         else:  
             mode = 'validation'
             anno_path = os.path.join(args.data_path, 'test.csv') 
 
-        dataset = VideoClsDataset(
+        dataset = SSVideoClsDataset(
             anno_path=anno_path,
             data_path='/',
             mode=mode,
-            clip_len=args.num_frames,
-            frame_sample_rate=args.sampling_rate,
-            num_segment=1,
+            clip_len=1,
+            num_segment=args.num_frames,
             test_num_segment=args.test_num_segment,
             test_num_crop=args.test_num_crop,
             num_crop=1 if not test_mode else 3,
@@ -118,10 +119,10 @@ def build_dataset(is_train, test_mode, args):
     elif args.data_set == 'UCF101':
         mode = None
         anno_path = None
-        if is_train == True:
+        if is_train is True:
             mode = 'train'
             anno_path = os.path.join(args.data_path, 'train.csv')
-        elif test_mode == True:
+        elif test_mode is True:
             mode = 'test'
             anno_path = os.path.join(args.data_path, 'val.csv') 
         else:  
@@ -149,10 +150,10 @@ def build_dataset(is_train, test_mode, args):
     elif args.data_set == 'HMDB51':
         mode = None
         anno_path = None
-        if is_train == True:
+        if is_train is True:
             mode = 'train'
             anno_path = os.path.join(args.data_path, 'train.csv')
-        elif test_mode == True:
+        elif test_mode is True:
             mode = 'test'
             anno_path = os.path.join(args.data_path, 'val.csv') 
         else:  

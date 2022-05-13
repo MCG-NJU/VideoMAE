@@ -1,6 +1,6 @@
 # Set the path to save checkpoints
-OUTPUT_DIR='YOUR_PATH/ssv2_videomae_pretrain_base_patch16_224_frame_16x2_tube_mask_ratio_0.9_e2400/eval_lr_1e-3_epoch_40'
-# path to SSV2 set (train.csv/val.csv/test.csv)
+OUTPUT_DIR='YOUR_PATH/ssv2_videomae_pretrain_base_patch16_224_frame_16x2_tube_mask_ratio_0.9_e2400/eval_lr_5e-4_repeated_aug_epoch_30'
+# path to SSV2 annotation file (train.csv/val.csv/test.csv)
 DATA_PATH='YOUR_PATH/list_ssv2'
 # path to pretrain model
 MODEL_PATH='YOUR_PATH/ssv2_videomae_pretrain_base_patch16_224_frame_16x2_tube_mask_ratio_0.9_e2400/checkpoint-2399.pth'
@@ -17,19 +17,19 @@ OMP_NUM_THREADS=1 python -m torch.distributed.launch --nproc_per_node=8 \
     --finetune ${MODEL_PATH} \
     --log_dir ${OUTPUT_DIR} \
     --output_dir ${OUTPUT_DIR} \
-    --batch_size 8 \
-    --num_sample 1 \
+    --batch_size 6 \
+    --num_sample 2 \
     --input_size 224 \
     --short_side_size 224 \
     --save_ckpt_freq 10 \
     --num_frames 16 \
-    --sampling_rate 2 \
     --opt adamw \
-    --lr 1e-3 \
+    --lr 5e-4 \
     --opt_betas 0.9 0.999 \
     --weight_decay 0.05 \
-    --epochs 40 \
+    --epochs 30 \
     --dist_eval \
     --test_num_segment 2 \
     --test_num_crop 3 \
     --enable_deepspeed 
+

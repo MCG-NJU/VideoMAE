@@ -1,5 +1,5 @@
 # Set the path to save checkpoints
-OUTPUT_DIR='YOUR_PATH/ssv2_videomae_pretrain_base_patch16_224_frame_16x2_tube_mask_ratio_0.9_e800/eval_lr_1e-3_epoch_40'
+OUTPUT_DIR='YOUR_PATH/ssv2_videomae_pretrain_base_patch16_224_frame_16x2_tube_mask_ratio_0.9_e800/eval_lr_5e-4_epoch_50'
 # path to SSV2 set (train.csv/val.csv/test.csv)
 DATA_PATH='YOUR_PATH/list_ssv2'
 # path to pretrain model
@@ -23,13 +23,13 @@ OMP_NUM_THREADS=1 python -m torch.distributed.launch --nproc_per_node=8 \
     --short_side_size 224 \
     --save_ckpt_freq 10 \
     --num_frames 16 \
-    --sampling_rate 2 \
     --opt adamw \
-    --lr 1e-3 \
+    --lr 5e-4 \
     --opt_betas 0.9 0.999 \
     --weight_decay 0.05 \
-    --epochs 40 \
+    --epochs 50 \
     --dist_eval \
     --test_num_segment 2 \
     --test_num_crop 3 \
     --enable_deepspeed 
+
