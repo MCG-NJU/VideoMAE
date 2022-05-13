@@ -36,7 +36,7 @@ VideoMAE works well for video datasets of different scales and can achieve **84.
 
 |  Method  | Extra Data | Backbone | Frames x Clips x Crops | Top-1 | Top-5 |
 | :------: | :--------: | :------: | :--------------------: | :---: | :---: |
-| VideoMAE |  ***no***  |  ViT-B   |         16x2x3         | 70.3  | 92.7  |
+| VideoMAE |  ***no***  |  ViT-B   |         16x2x3         | 70.6  | 92.6  |
 | VideoMAE |  ***no***  |  ViT-L   |         16x2x3         | 74.2  | 94.7  |
 | VideoMAE |  ***no***  |  ViT-L   |         32x1x3         | 75.3  | 95.2  |
 
