@@ -18,7 +18,7 @@
 
 ### Note:
 
-- We report the results of VideoMAE finetuned with **I3D dense sampling** on **Kinetics400** and **uniform sampling** on **Something-Something V2**, respectively.
+- We report the results of VideoMAE finetuned with `I3D dense sampling` on **Kinetics400** and `uniform sampling` on **Something-Something V2**, respectively.
 - \#Frame = #input_frame x #clip x #crop.
 - \#input_frame means how many frames are input for model during the test phase.
 - \#crop means spatial crops (e.g., 3 for left/right/center crop).
