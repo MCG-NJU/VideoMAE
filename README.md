@@ -38,7 +38,7 @@ VideoMAE works well for video datasets of different scales and can achieve **85.
 | :------: | :--------: | :------: | :--------: | :---------------------: | :---: | :---: |
 | VideoMAE |  ***no***  |  ViT-B   |  224x224   |         16x2x3          | 70.6  | 92.6  |
 | VideoMAE |  ***no***  |  ViT-L   |  224x224   |         16x2x3          | 74.2  | 94.7  |
-| VideoMAE |  ***no***  |  ViT-L   |  320x320   |         32x1x3          | 75.3  | 95.2  |
+| VideoMAE |  ***no***  |  ViT-L   |  224x224   |         32x1x3          | 75.3  | 95.2  |
 
 ### ✨ Kinetics-400
 
