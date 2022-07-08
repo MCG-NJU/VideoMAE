@@ -50,14 +50,14 @@ VideoMAE works well for video datasets of different scales and can achieve **85.
 
 ### ✨ AVA 2.2
 
-|  Method  |  Extra Data  | Extra Label | Backbone | #Frame Sample Rate | mAP  |
-| :------: | :----------: | :---------: | :------: | :----------------: | :--: |
-| VideoMAE | Kinetics-400 |      ❌      |  ViT-B   |        16x4        | 26.7 |
-| VideoMAE | Kinetics-400 |      ✔️      |  ViT-B   |        16x4        | 31.8 |
-| VideoMAE | Kinetics-400 |      ❌      |  ViT-L   |        16x4        | 34.3 |
-| VideoMAE | Kinetics-400 |      ✔️      |  ViT-L   |        16x4        | 37.8 |
-| VideoMAE | Kinetics-700 |      ❌      |  ViT-L   |        16x4        | 36.1 |
-| VideoMAE | Kinetics-700 |      ✔️      |  ViT-L   |        16x4        | 39.3 |
+|  Method  |  Extra Data  | Extra Label | Backbone | #Frame x Sample Rate | mAP  |
+| :------: | :----------: | :---------: | :------: | :------------------: | :--: |
+| VideoMAE | Kinetics-400 |   &cross;   |  ViT-B   |         16x4         | 26.7 |
+| VideoMAE | Kinetics-400 |   &check;   |  ViT-B   |         16x4         | 31.8 |
+| VideoMAE | Kinetics-400 |   &cross;   |  ViT-L   |         16x4         | 34.3 |
+| VideoMAE | Kinetics-400 |   &check;   |  ViT-L   |         16x4         | 37.8 |
+| VideoMAE | Kinetics-700 |   &cross;   |  ViT-L   |         16x4         | 36.1 |
+| VideoMAE | Kinetics-700 |   &check;   |  ViT-L   |         16x4         | 39.3 |
 
 ### ✨ UCF101 & HMDB51
 
