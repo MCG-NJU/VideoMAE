@@ -1,9 +1,9 @@
 # Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training [[Arxiv]](https://arxiv.org/abs/2203.12602)
 
-![VideoMAE Framework](figs/videomae.png)
+![VideoMAE Framework](figs/videomae.jpg)
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/videomae-masked-autoencoders-are-data-1/action-recognition-in-videos-on-something)](https://paperswithcode.com/sota/action-recognition-in-videos-on-something?p=videomae-masked-autoencoders-are-data-1)<br>
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/videomae-masked-autoencoders-are-data-1/action-classification-on-kinetics-400)](https://paperswithcode.com/sota/action-classification-on-kinetics-400?p=videomae-masked-autoencoders-are-data-1)<br>
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/videomae-masked-autoencoders-are-data-1/action-classification-on-kinetics-400)](https://paperswithcode.com/sota/action-classification-on-kinetics-400?p=videomae-masked-autoencoders-are-data-1)<br>[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/videomae-masked-autoencoders-are-data-1/action-recognition-on-ava-v2-2)](https://paperswithcode.com/sota/action-recognition-on-ava-v2-2?p=videomae-masked-autoencoders-are-data-1)<br>
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/videomae-masked-autoencoders-are-data-1/self-supervised-action-recognition-on-ucf101)](https://paperswithcode.com/sota/self-supervised-action-recognition-on-ucf101?p=videomae-masked-autoencoders-are-data-1)<br>
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/videomae-masked-autoencoders-are-data-1/self-supervised-action-recognition-on-hmdb51)](https://paperswithcode.com/sota/self-supervised-action-recognition-on-hmdb51?p=videomae-masked-autoencoders-are-data-1)
 
@@ -13,7 +13,7 @@
 
 ## 📰 News
 
-**[2022.4.24]**  Code and pre-trained models are available now! Please give a star⭐️ for our best efforts.😆<br>**[2022.4.15]** The **[LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE)** of this project has been upgraded to CC-BY-NC 4.0. <br>
+**[2022.4.24]**  Code and pre-trained models are available now! Please leave a star⭐️ for our best efforts.😆<br>**[2022.4.15]** The **[LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE)** of this project has been upgraded to CC-BY-NC 4.0. <br>
 **[2022.3.24]** ~~Code and pre-trained models will be released here.~~ Welcome to **watch** this repository for the latest updates.
 
 ## ✨ Highlights
@@ -28,25 +28,36 @@ VideoMAE uses the simple masked autoencoder and **plain ViT** backbone to perfor
 
 ### 😮 High performance, but NO extra data required
 
-VideoMAE works well for video datasets of different scales and can achieve **84.7%** on Kinects-400, **75.3%** on Something-Something V2, **90.8%** on UCF101, and **61.1%** on HMDB51. To our best knowledge, VideoMAE is the **first** to achieve the state-of-the-art performance on these four popular benchmarks with the **vanilla ViT** backbones while **doesn't need** any extra data or pre-trained models.
+VideoMAE works well for video datasets of different scales and can achieve **85.8%** on Kinects-400, **75.3%** on Something-Something V2, **90.8%** on UCF101, and **61.1%** on HMDB51. To our best knowledge, VideoMAE is the **first** to achieve the state-of-the-art performance on these four popular benchmarks with the **vanilla ViT** backbones while **doesn't need** any extra data or pre-trained models.
 
 ## 🚀 Main Results
 
 ### ✨ Something-Something V2
 
-|  Method  | Extra Data | Backbone | Frames x Clips x Crops | Top-1 | Top-5 |
-| :------: | :--------: | :------: | :--------------------: | :---: | :---: |
-| VideoMAE |  ***no***  |  ViT-B   |         16x2x3         | 70.6  | 92.6  |
-| VideoMAE |  ***no***  |  ViT-L   |         16x2x3         | 74.2  | 94.7  |
-| VideoMAE |  ***no***  |  ViT-L   |         32x1x3         | 75.3  | 95.2  |
+|  Method  | Extra Data | Backbone | Resolution | #Frames x Clips x Crops | Top-1 | Top-5 |
+| :------: | :--------: | :------: | :--------: | :---------------------: | :---: | :---: |
+| VideoMAE |  ***no***  |  ViT-B   |  224x224   |         16x2x3          | 70.6  | 92.6  |
+| VideoMAE |  ***no***  |  ViT-L   |  224x224   |         16x2x3          | 74.2  | 94.7  |
+| VideoMAE |  ***no***  |  ViT-L   |  320x320   |         32x1x3          | 75.3  | 95.2  |
 
 ### ✨ Kinetics-400
 
-|  Method  |  Extra Data  | Backbone | Frames x Clips x Crops | Top-1 | Top-5 |
-| :------: | :----------: | :------: | :--------------------: | :---: | :---: |
-| VideoMAE |   ***no***   |  ViT-B   |         16x5x3         | 80.9  | 94.7  |
-| VideoMAE |   ***no***   |  ViT-L   |         16x5x3         | 84.7  | 96.5  |
-| VideoMAE | Kinetics-700 |  ViT-L   |         16x5x3         | 85.8  | 96.8  |
+|  Method  | Extra Data | Backbone | Resolution | #Frames x Clips x Crops | Top-1 | Top-5 |
+| :------: | :--------: | :------: | :--------: | :---------------------: | :---: | :---: |
+| VideoMAE |  ***no***  |  ViT-B   |  224x224   |         16x5x3          | 80.9  | 94.7  |
+| VideoMAE |  ***no***  |  ViT-L   |  224x224   |         16x5x3          | 84.7  | 96.5  |
+| VideoMAE |  ***no***  |  ViT-L   |  320x320   |         32x5x3          | 85.8  | 97.1  |
+
+### ✨ AVA 2.2
+
+|  Method  |  Extra Data  | Extra Label | Backbone | #Frame Sample Rate | mAP  |
+| :------: | :----------: | :---------: | :------: | :----------------: | :--: |
+| VideoMAE | Kinetics-400 |      ❌      |  ViT-B   |        16x4        | 26.7 |
+| VideoMAE | Kinetics-400 |      ✔️      |  ViT-B   |        16x4        | 31.8 |
+| VideoMAE | Kinetics-400 |      ❌      |  ViT-L   |        16x4        | 34.3 |
+| VideoMAE | Kinetics-400 |      ✔️      |  ViT-L   |        16x4        | 37.8 |
+| VideoMAE | Kinetics-700 |      ❌      |  ViT-L   |        16x4        | 36.1 |
+| VideoMAE | Kinetics-700 |      ✔️      |  ViT-L   |        16x4        | 39.3 |
 
 ### ✨ UCF101 & HMDB51
 
@@ -90,11 +101,11 @@ This project is built upon [MAE-pytorch](https://github.com/pengzhiliang/MAE-pyt
 
 ## 🔒 License
 
-The majority of this project is released under the CC-BY-NC 4.0 license as found in the [LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE) file. Portions of the project are available under separate license terms: [SlowFast](https://github.com/facebookresearch/SlowFast) and [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) are licensed under the Apache 2.0 license. [BEiT](https://github.com/microsoft/unilm/tree/master/beit)   is licensed under the MIT license.
+The majority of this project is released under the CC-BY-NC 4.0 license as found in the [LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE) file. Portions of the project are available under separate license terms: [SlowFast](https://github.com/facebookresearch/SlowFast) and [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) are licensed under the Apache 2.0 license. [BEiT](https://github.com/microsoft/unilm/tree/master/beit) is licensed under the MIT license.
 
 ## ✏️ Citation
 
-If you think this project is helpful, please feel free to give a star⭐️ and cite our paper:
+If you think this project is helpful, please feel free to leave a star⭐️ and cite our paper:
 
 ```
 @article{videomae,
