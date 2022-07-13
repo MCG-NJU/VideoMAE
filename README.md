@@ -12,8 +12,8 @@
 > [Zhan Tong](https://github.com/yztongzhan), [Yibing Song](https://ybsong00.github.io/), [Jue Wang](https://juewang725.github.io/), [Limin Wang](http://wanglimin.github.io/)<br>Nanjing University, Tencent AI Lab
 
 ## 📰 News
-
-**[2022.4.24]**  Code and pre-trained models are available now! Please leave a star⭐️ for our best efforts.😆<br>**[2022.4.15]** The **[LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE)** of this project has been upgraded to CC-BY-NC 4.0. <br>
+**[2022.7.7]**  We have updated new results on downstream AVA 2.2 benckmark. Please refer to our [paper](https://arxiv.org/abs/2203.12602) for details. <br>
+**[2022.4.24]**  Code and pre-trained models are available now! Please leave a star⭐️ for our best efforts.😆<br>**[2022.4.15]** The **[LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE)** of this project has been upgraded to CC-BY-NC 4.0.<br>
 **[2022.3.24]** ~~Code and pre-trained models will be released here.~~ Welcome to **watch** this repository for the latest updates.
 
 ## ✨ Highlights
