@@ -4,7 +4,7 @@ import math
 import sys
 from typing import Iterable, Optional
 import torch
-from timm.data import Mixup
+from mixup import Mixup
 from timm.utils import accuracy, ModelEma
 import utils
 

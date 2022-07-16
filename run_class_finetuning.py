@@ -10,7 +10,7 @@ from functools import partial
 from pathlib import Path
 from collections import OrderedDict
 
-from timm.data.mixup import Mixup
+from mixup import Mixup
 from timm.models import create_model
 from timm.loss import LabelSmoothingCrossEntropy, SoftTargetCrossEntropy
 from timm.utils import ModelEma
