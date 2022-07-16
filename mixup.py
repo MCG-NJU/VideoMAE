@@ -200,7 +200,7 @@ class Mixup:
         if use_cutmix:
             (yl, yh, xl, xh), lam = cutmix_bbox_and_lam(
                 x.shape, lam, ratio_minmax=self.cutmix_minmax, correct_lam=self.correct_lam)
-            x[:, :, yl:yh, xl:xh] = x.flip(0)[:, :, yl:yh, xl:xh]
+            x[..., yl:yh, xl:xh] = x.flip(0)[..., yl:yh, xl:xh]
         else:
             x_flipped = x.flip(0).mul_(1. - lam)
             x.mul_(lam).add_(x_flipped)
@@ -289,7 +289,7 @@ class FastCollateMixup(Mixup):
             if lam != 1.:
                 if use_cutmix:
                     mixed = mixed.copy()  # don't want to modify the original while iterating
-                    mixed[:, yl:yh, xl:xh] = batch[j][0][:, yl:yh, xl:xh]
+                    mixed[..., yl:yh, xl:xh] = batch[j][0][..., yl:yh, xl:xh]
                 else:
                     mixed = mixed.astype(np.float32) * lam + batch[j][0].astype(np.float32) * (1 - lam)
                     np.rint(mixed, out=mixed)
