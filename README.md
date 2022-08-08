@@ -12,7 +12,7 @@
 > [Zhan Tong](https://github.com/yztongzhan), [Yibing Song](https://ybsong00.github.io/), [Jue Wang](https://juewang725.github.io/), [Limin Wang](http://wanglimin.github.io/)<br>Nanjing University, Tencent AI Lab
 
 ## 📰 News
-**[2022.8.8]** 👀 VideoMAE is on [🤗HuggingFace Transformers](https://huggingface.co/docs/transformers/main/en/model_doc/videomae) now! Thank [@NielsRogge](https://github.com/NielsRogge) for support! 
+**[2022.8.8]** 👀 VideoMAE is on [🤗HuggingFace Transformers](https://huggingface.co/docs/transformers/main/en/model_doc/videomae) now! Thank [@NielsRogge](https://github.com/NielsRogge) for support! <br>
 **[2022.8.8]**  We have fixed a bug 🐛 in this [commit](https://github.com/MCG-NJU/VideoMAE/commit/2254c5eeeff30cda700622d8a24f14403eda4038) and the performance on Kinetics-400 can be improved by about 0.5%😮. Thank [@JerryFlymi](https://github.com/JerryFlymi) for help.<br>
 **[2022.7.7]**  We have updated new results on downstream AVA 2.2 benckmark. Please refer to our [paper](https://arxiv.org/abs/2203.12602) for details. <br>
 **[2022.4.24]**  Code and pre-trained models are available now! Please leave a star⭐️ for our best efforts.😆<br>**[2022.4.15]** The **[LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE)** of this project has been upgraded to CC-BY-NC 4.0.<br>
