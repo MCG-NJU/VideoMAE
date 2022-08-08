@@ -29,7 +29,7 @@ VideoMAE uses the simple masked autoencoder and **plain ViT** backbone to perfor
 
 ### 😮 High performance, but NO extra data required
 
-VideoMAE works well for video datasets of different scales and can achieve **85.8%** on Kinects-400, **75.3%** on Something-Something V2, **90.8%** on UCF101, and **61.1%** on HMDB51. To our best knowledge, VideoMAE is the **first** to achieve the state-of-the-art performance on these four popular benchmarks with the **vanilla ViT** backbones while **doesn't need** any extra data or pre-trained models.
+VideoMAE works well for video datasets of different scales and can achieve **86.1%** on Kinects-400, **75.4%** on Something-Something V2, **90.8%** on UCF101, and **61.1%** on HMDB51. To our best knowledge, VideoMAE is the **first** to achieve the state-of-the-art performance on these four popular benchmarks with the **vanilla ViT** backbones while **doesn't need** any extra data or pre-trained models.
 
 ## 🚀 Main Results
 
