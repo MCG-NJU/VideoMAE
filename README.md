@@ -12,6 +12,7 @@
 > [Zhan Tong](https://github.com/yztongzhan), [Yibing Song](https://ybsong00.github.io/), [Jue Wang](https://juewang725.github.io/), [Limin Wang](http://wanglimin.github.io/)<br>Nanjing University, Tencent AI Lab
 
 ## 📰 News
+**[2022.8.8]**  We have fixed a bug 🐛 in this [commit](https://github.com/MCG-NJU/VideoMAE/commit/2254c5eeeff30cda700622d8a24f14403eda4038) and the performance on Kinetics-400 can be improved by about 0.5%😮. Thank @JerryFlymi for help.<br>
 **[2022.7.7]**  We have updated new results on downstream AVA 2.2 benckmark. Please refer to our [paper](https://arxiv.org/abs/2203.12602) for details. <br>
 **[2022.4.24]**  Code and pre-trained models are available now! Please leave a star⭐️ for our best efforts.😆<br>**[2022.4.15]** The **[LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE)** of this project has been upgraded to CC-BY-NC 4.0.<br>
 **[2022.3.24]** ~~Code and pre-trained models will be released here.~~ Welcome to **watch** this repository for the latest updates.
@@ -36,17 +37,17 @@ VideoMAE works well for video datasets of different scales and can achieve **85.
 
 |  Method  | Extra Data | Backbone | Resolution | #Frames x Clips x Crops | Top-1 | Top-5 |
 | :------: | :--------: | :------: | :--------: | :---------------------: | :---: | :---: |
-| VideoMAE |  ***no***  |  ViT-B   |  224x224   |         16x2x3          | 70.6  | 92.6  |
-| VideoMAE |  ***no***  |  ViT-L   |  224x224   |         16x2x3          | 74.2  | 94.7  |
-| VideoMAE |  ***no***  |  ViT-L   |  224x224   |         32x1x3          | 75.3  | 95.2  |
+| VideoMAE |  ***no***  |  ViT-B   |  224x224   |         16x2x3          | 70.8  | 92.4  |
+| VideoMAE |  ***no***  |  ViT-L   |  224x224   |         16x2x3          | 74.3  | 94.6  |
+| VideoMAE |  ***no***  |  ViT-L   |  224x224   |         32x1x3          | 75.4  | 95.2  |
 
 ### ✨ Kinetics-400
 
 |  Method  | Extra Data | Backbone | Resolution | #Frames x Clips x Crops | Top-1 | Top-5 |
 | :------: | :--------: | :------: | :--------: | :---------------------: | :---: | :---: |
-| VideoMAE |  ***no***  |  ViT-B   |  224x224   |         16x5x3          | 80.9  | 94.7  |
-| VideoMAE |  ***no***  |  ViT-L   |  224x224   |         16x5x3          | 84.7  | 96.5  |
-| VideoMAE |  ***no***  |  ViT-L   |  320x320   |         32x5x3          | 85.8  | 97.1  |
+| VideoMAE |  ***no***  |  ViT-B   |  224x224   |         16x5x3          | 81.5  | 95.1  |
+| VideoMAE |  ***no***  |  ViT-L   |  224x224   |         16x5x3          | 85.2  | 96.8  |
+| VideoMAE |  ***no***  |  ViT-L   |  320x320   |         32x5x3          | 86.1  | 97.3  |
 
 ### ✨ AVA 2.2
 
@@ -96,7 +97,7 @@ Zhan Tong: tongzhan@smail.nju.edu.cn
 
 ## 👍 Acknowledgements
 
-Thanks to [Ziteng Gao](https://sebgao.github.io/), Lei Chen and [Chongjian Ge](https://chongjiange.github.io/) for their kindly support.<br>
+Thanks to [Ziteng Gao](https://sebgao.github.io/), Lei Chen, [Chongjian Ge](https://chongjiange.github.io/), and [Zhiyu Zhao](https://github.com/JerryFlymi) for their kindly support.<br>
 This project is built upon [MAE-pytorch](https://github.com/pengzhiliang/MAE-pytorch) and [BEiT](https://github.com/microsoft/unilm/tree/master/beit). Thanks to the contributors of these great codebases.
 
 ## 🔒 License
