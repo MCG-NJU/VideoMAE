@@ -7,6 +7,7 @@ import torch
 from mixup import Mixup
 from timm.utils import accuracy, ModelEma
 import utils
+from scipy.special import softmax
 
 
 def train_class_batch(model, samples, target, criterion):
@@ -245,6 +246,7 @@ def merge(eval_path, num_tasks):
             chunk_nb = line.split(']')[1].split(' ')[2]
             split_nb = line.split(']')[1].split(' ')[3]
             data = np.fromstring(line.split('[')[1].split(']')[0], dtype=np.float, sep=',')
+            data = softmax(data)
             if not name in dict_feats:
                 dict_feats[name] = []
                 dict_label[name] = 0
