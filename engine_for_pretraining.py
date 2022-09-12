@@ -1,3 +1,4 @@
+from itertools import accumulate
 import math
 import sys
 from typing import Iterable
@@ -7,7 +8,7 @@ import utils
 from einops import rearrange
 from timm.data.constants import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 
-def train_one_epoch(model: torch.nn.Module, data_loader: Iterable, optimizer: torch.optim.Optimizer,
+def train_one_epoch(args,model: torch.nn.Module, data_loader: Iterable, optimizer: torch.optim.Optimizer,
                     device: torch.device, epoch: int, loss_scaler, max_norm: float = 0, patch_size: int = 16, 
                     normlize_target: bool = True, log_writer=None, lr_scheduler=None, start_steps=None,
                     lr_schedule_values=None, wd_schedule_values=None):
@@ -19,16 +20,17 @@ def train_one_epoch(model: torch.nn.Module, data_loader: Iterable, optimizer: to
     print_freq = 10
 
     loss_func = nn.MSELoss()
-
+    accum_iter=args.accum_iter
     for step, batch in enumerate(metric_logger.log_every(data_loader, print_freq, header)):
         # assign learning rate & weight decay for each step
         it = start_steps + step  # global training iteration
-        if lr_schedule_values is not None or wd_schedule_values is not None:
-            for i, param_group in enumerate(optimizer.param_groups):
-                if lr_schedule_values is not None:
-                    param_group["lr"] = lr_schedule_values[it] * param_group["lr_scale"]
-                if wd_schedule_values is not None and param_group["weight_decay"] > 0:
-                    param_group["weight_decay"] = wd_schedule_values[it]
+        if step % accum_iter == 0:
+            if lr_schedule_values is not None or wd_schedule_values is not None:
+                for i, param_group in enumerate(optimizer.param_groups):
+                    if lr_schedule_values is not None:
+                        param_group["lr"] = lr_schedule_values[it] * param_group["lr_scale"]
+                    if wd_schedule_values is not None and param_group["weight_decay"] > 0:
+                        param_group["weight_decay"] = wd_schedule_values[it]
 
         videos, bool_masked_pos = batch
         videos = videos.to(device, non_blocking=True)
@@ -62,11 +64,14 @@ def train_one_epoch(model: torch.nn.Module, data_loader: Iterable, optimizer: to
             print("Loss is {}, stopping training".format(loss_value))
             sys.exit(1)
 
-        optimizer.zero_grad()
+        loss/=accum_iter
+
+        if (step + 1) % accum_iter == 0:
+            optimizer.zero_grad()
         # this attribute is added by timm on one optimizer (adahessian)
         is_second_order = hasattr(optimizer, 'is_second_order') and optimizer.is_second_order
         grad_norm = loss_scaler(loss, optimizer, clip_grad=max_norm,
-                                parameters=model.parameters(), create_graph=is_second_order)
+                                parameters=model.parameters(), create_graph=is_second_order,update_grad=(step + 1) % accum_iter == 0)
         loss_scale_value = loss_scaler.state_dict()["scale"]
 
         torch.cuda.synchronize()
