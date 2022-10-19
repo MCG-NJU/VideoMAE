@@ -1,4 +1,4 @@
-# Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training [[Arxiv]](https://arxiv.org/abs/2203.12602)
+# Official PyTorch Implementation of VideoMAE.
 
 ![VideoMAE Framework](figs/videomae.jpg)
 
@@ -15,7 +15,6 @@
 ## 📰 News
 **[2022.9.15]** VideoMAE is accepted by **NeurIPS 2022**! 🎉 <br>
 **[2022.8.8]** 👀 VideoMAE is integrated into [🤗HuggingFace Transformers](https://huggingface.co/docs/transformers/main/en/model_doc/videomae) now! [![Hugging Face Models](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-blue)](https://huggingface.co/models?other=videomae)<br>
-**[2022.8.8]**  We have fixed a bug 🐛 in this [commit](https://github.com/MCG-NJU/VideoMAE/commit/2254c5eeeff30cda700622d8a24f14403eda4038) and the performance on Kinetics-400 can be improved by about 0.5% 😮. Thank [@JerryFlymi](https://github.com/JerryFlymi) for help.<br>
 **[2022.7.7]**  We have updated new results on downstream AVA 2.2 benchmark. Please refer to our [paper](https://arxiv.org/abs/2203.12602) for details. <br>
 **[2022.4.24]**  Code and pre-trained models are available now! <br>
 **[2022.4.15]** The **[LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE)** of this project has been upgraded to CC-BY-NC 4.0.<br>
@@ -33,7 +32,7 @@ VideoMAE uses the simple masked autoencoder and **plain ViT** backbone to perfor
 
 ### 😮 High performance, but NO extra data required
 
-VideoMAE works well for video datasets of different scales and can achieve **86.1%** on Kinects-400, **75.4%** on Something-Something V2, **90.8%** on UCF101, and **61.1%** on HMDB51. To our best knowledge, VideoMAE is the **first** to achieve the state-of-the-art performance on these four popular benchmarks with the **vanilla ViT** backbones while **doesn't need** any extra data or pre-trained models.
+VideoMAE works well for video datasets of different scales and can achieve **87.4%** on Kinects-400, **75.4%** on Something-Something V2, **91.3%** on UCF101, and **62.6%** on HMDB51. To our best knowledge, VideoMAE is the **first** to achieve the state-of-the-art performance on these four popular benchmarks with the **vanilla ViT** backbones while **doesn't need** any extra data or pre-trained models.
 
 ## 🚀 Main Results
 
@@ -41,6 +40,7 @@ VideoMAE works well for video datasets of different scales and can achieve **86.
 
 |  Method  | Extra Data | Backbone | Resolution | #Frames x Clips x Crops | Top-1 | Top-5 |
 | :------: | :--------: | :------: | :--------: | :---------------------: | :---: | :---: |
+| VideoMAE |  ***no***  |  ViT-S   |  224x224   |         16x2x3          | 66.8  | 90.3  |
 | VideoMAE |  ***no***  |  ViT-B   |  224x224   |         16x2x3          | 70.8  | 92.4  |
 | VideoMAE |  ***no***  |  ViT-L   |  224x224   |         16x2x3          | 74.3  | 94.6  |
 | VideoMAE |  ***no***  |  ViT-L   |  224x224   |         32x1x3          | 75.4  | 95.2  |
@@ -49,18 +49,25 @@ VideoMAE works well for video datasets of different scales and can achieve **86.
 
 |  Method  | Extra Data | Backbone | Resolution | #Frames x Clips x Crops | Top-1 | Top-5 |
 | :------: | :--------: | :------: | :--------: | :---------------------: | :---: | :---: |
+| VideoMAE |  ***no***  |  ViT-S   |  224x224   |         16x5x3          | 79.0  | 93.8  |
 | VideoMAE |  ***no***  |  ViT-B   |  224x224   |         16x5x3          | 81.5  | 95.1  |
 | VideoMAE |  ***no***  |  ViT-L   |  224x224   |         16x5x3          | 85.2  | 96.8  |
-| VideoMAE |  ***no***  |  ViT-L   |  320x320   |         32x5x3          | 86.1  | 97.3  |
+| VideoMAE |  ***no***  |  ViT-H   |  224x224   |         16x5x3          | 86.6  | 97.1  |
+| VideoMAE |  ***no***  |  ViT-L   |  320x320   |         32x4x3          | 86.1  | 97.3  |
+| VideoMAE |  ***no***  |  ViT-H   |  320x320   |         32x4x3          | 87.4  | 97.6  |
 
 ### ✨ AVA 2.2
 
 |  Method  |  Extra Data  | Extra Label | Backbone | #Frame x Sample Rate | mAP  |
 | :------: | :----------: | :---------: | :------: | :------------------: | :--: |
+| VideoMAE | Kinetics-400 |   &cross;   |  ViT-S   |         16x4         | 22.5 |
+| VideoMAE | Kinetics-400 |   &check;   |  ViT-S   |         16x4         | 28.4 |
 | VideoMAE | Kinetics-400 |   &cross;   |  ViT-B   |         16x4         | 26.7 |
 | VideoMAE | Kinetics-400 |   &check;   |  ViT-B   |         16x4         | 31.8 |
 | VideoMAE | Kinetics-400 |   &cross;   |  ViT-L   |         16x4         | 34.3 |
-| VideoMAE | Kinetics-400 |   &check;   |  ViT-L   |         16x4         | 37.8 |
+| VideoMAE | Kinetics-400 |   &check;   |  ViT-L   |         16x4         | 37.0 |
+| VideoMAE | Kinetics-400 |   &cross;   |  ViT-H   |         16x4         | 36.5 |
+| VideoMAE | Kinetics-400 |   &check;   |  ViT-H   |         16x4         | 39.5 |
 | VideoMAE | Kinetics-700 |   &cross;   |  ViT-L   |         16x4         | 36.1 |
 | VideoMAE | Kinetics-700 |   &check;   |  ViT-L   |         16x4         | 39.3 |
 
@@ -68,7 +75,7 @@ VideoMAE works well for video datasets of different scales and can achieve **86.
 
 |  Method  |  Extra Data  | Backbone | UCF101 | HMDB51 |
 | :------: | :----------: | :------: | :----: | :----: |
-| VideoMAE |   ***no***   |  ViT-B   |  90.8  |  61.1  |
+| VideoMAE |   ***no***   |  ViT-B   |  91.3  |  62.5  |
 | VideoMAE | Kinetics-400 |  ViT-B   |  96.1  |  73.3  |
 
 ## 🔨 Installation
@@ -113,6 +120,13 @@ The majority of this project is released under the CC-BY-NC 4.0 license as found
 If you think this project is helpful, please feel free to leave a star⭐️ and cite our paper:
 
 ```
+@inproceedings{tong2022videomae,
+  title={Video{MAE}: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training},
+  author={Zhan Tong and Yibing Song and Jue Wang and Limin Wang},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2022}
+}
+
 @article{videomae,
   title={VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training},
   author={Tong, Zhan and Song, Yibing and Wang, Jue and Wang, Limin},
