@@ -75,7 +75,7 @@ VideoMAE works well for video datasets of different scales and can achieve **87.
 
 |  Method  |  Extra Data  | Backbone | UCF101 | HMDB51 |
 | :------: | :----------: | :------: | :----: | :----: |
-| VideoMAE |   ***no***   |  ViT-B   |  91.3  |  62.5  |
+| VideoMAE |   ***no***   |  ViT-B   |  91.3  |  62.6  |
 | VideoMAE | Kinetics-400 |  ViT-B   |  96.1  |  73.3  |
 
 ## 🔨 Installation
