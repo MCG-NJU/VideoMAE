@@ -72,6 +72,8 @@ def get_args():
                         help='epochs to warmup LR, if scheduler supports')
     parser.add_argument('--warmup_steps', type=int, default=-1, metavar='N',
                         help='epochs to warmup LR, if scheduler supports')
+    parser.add_argument('--use_checkpoint', action='store_true')
+    parser.set_defaults(use_checkpoint=False)
 
     # Augmentation parameters
     parser.add_argument('--color_jitter', type=float, default=0.0, metavar='PCT',
@@ -123,7 +125,8 @@ def get_model(args):
         pretrained=False,
         drop_path_rate=args.drop_path,
         drop_block_rate=None,
-        decoder_depth=args.decoder_depth
+        decoder_depth=args.decoder_depth,
+        use_checkpoint=args.use_checkpoint
     )
     return model
 
@@ -196,7 +199,7 @@ def main(args):
     print("Number of training examples per epoch = %d" % (total_batch_size * num_training_steps_per_epoch))
 
     if args.distributed:
-        model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu], find_unused_parameters=True)
+        model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu], find_unused_parameters=False)
         model_without_ddp = model.module
 
     optimizer = create_optimizer(

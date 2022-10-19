@@ -5,6 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from timm.models.layers import drop_path, to_2tuple, trunc_normal_
 from timm.models.registry import register_model
+import torch.utils.checkpoint as checkpoint
 
 
 def _cfg(url='', **kwargs):
@@ -166,7 +167,7 @@ def get_sinusoid_encoding_table(n_position, d_hid):
     sinusoid_table[:, 0::2] = np.sin(sinusoid_table[:, 0::2]) # dim 2i 
     sinusoid_table[:, 1::2] = np.cos(sinusoid_table[:, 1::2]) # dim 2i+1 
 
-    return torch.FloatTensor(sinusoid_table).unsqueeze(0) 
+    return  torch.tensor(sinusoid_table,dtype=torch.float, requires_grad=False).unsqueeze(0) 
 
 
 class VisionTransformer(nn.Module):
@@ -183,6 +184,7 @@ class VisionTransformer(nn.Module):
                  mlp_ratio=4., 
                  qkv_bias=False, 
                  qk_scale=None, 
+                 fc_drop_rate=0., 
                  drop_rate=0., 
                  attn_drop_rate=0.,
                  drop_path_rate=0., 
@@ -192,6 +194,7 @@ class VisionTransformer(nn.Module):
                  init_scale=0.,
                  all_frames=16,
                  tubelet_size=2,
+                 use_checkpoint=False,
                  use_mean_pooling=True):
         super().__init__()
         self.num_classes = num_classes
@@ -200,6 +203,7 @@ class VisionTransformer(nn.Module):
         self.patch_embed = PatchEmbed(
             img_size=img_size, patch_size=patch_size, in_chans=in_chans, embed_dim=embed_dim, num_frames=all_frames, tubelet_size=self.tubelet_size)
         num_patches = self.patch_embed.num_patches
+        self.use_checkpoint = use_checkpoint
 
         if use_learnable_pos_emb:
             self.pos_embed = nn.Parameter(torch.zeros(1, num_patches, embed_dim))
@@ -219,6 +223,7 @@ class VisionTransformer(nn.Module):
             for i in range(depth)])
         self.norm = nn.Identity() if use_mean_pooling else norm_layer(embed_dim)
         self.fc_norm = norm_layer(embed_dim) if use_mean_pooling else None
+        self.fc_dropout = nn.Dropout(p=fc_drop_rate) if fc_drop_rate > 0 else nn.Identity()
         self.head = nn.Linear(embed_dim, num_classes) if num_classes > 0 else nn.Identity()
 
         if use_learnable_pos_emb:
@@ -261,8 +266,12 @@ class VisionTransformer(nn.Module):
             x = x + self.pos_embed.expand(B, -1, -1).type_as(x).to(x.device).clone().detach()
         x = self.pos_drop(x)
 
-        for blk in self.blocks:
-            x = blk(x)
+        if self.use_checkpoint:
+            for blk in self.blocks:
+                x = checkpoint.checkpoint(blk, x)
+        else:   
+            for blk in self.blocks:
+                x = blk(x)
 
         x = self.norm(x)
         if self.fc_norm is not None:
@@ -272,8 +281,9 @@ class VisionTransformer(nn.Module):
 
     def forward(self, x):
         x = self.forward_features(x)
-        x = self.head(x)
+        x = self.head(self.fc_dropout(x))
         return x
+
 
 @register_model
 def vit_small_patch16_224(pretrained=False, **kwargs):
@@ -282,6 +292,7 @@ def vit_small_patch16_224(pretrained=False, **kwargs):
         norm_layer=partial(nn.LayerNorm, eps=1e-6), **kwargs)
     model.default_cfg = _cfg()
     return model
+
 
 @register_model
 def vit_base_patch16_224(pretrained=False, **kwargs):
@@ -323,6 +334,15 @@ def vit_large_patch16_384(pretrained=False, **kwargs):
 def vit_large_patch16_512(pretrained=False, **kwargs):
     model = VisionTransformer(
         img_size=512, patch_size=16, embed_dim=1024, depth=24, num_heads=16, mlp_ratio=4, qkv_bias=True,
+        norm_layer=partial(nn.LayerNorm, eps=1e-6), **kwargs)
+    model.default_cfg = _cfg()
+    return model
+
+
+@register_model
+def vit_huge_patch16_224(pretrained=False, **kwargs):
+    model = VisionTransformer(
+        patch_size=16, embed_dim=1280, depth=32, num_heads=16, mlp_ratio=4, qkv_bias=True,
         norm_layer=partial(nn.LayerNorm, eps=1e-6), **kwargs)
     model.default_cfg = _cfg()
     return model

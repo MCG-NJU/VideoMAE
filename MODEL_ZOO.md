@@ -16,6 +16,12 @@
 | VideoMAE |  ***no***  |  ViT-B   |  800  | 16x2x3  | [script](scripts/ssv2/videomae_vit_base_patch16_224_tubemasking_ratio_0.9_epoch_800/pretrain.sh)/[log](https://drive.google.com/file/d/1eGS18rKvbgEJ3nbsXxokkMSwNGxxoX48/view?usp=sharing)/[checkpoint](https://drive.google.com/file/d/181hLvyrrPW2IOGA46fkxdJk0tNLIgdB2/view?usp=sharing) | [script](scripts/ssv2/videomae_vit_base_patch16_224_tubemasking_ratio_0.9_epoch_800/finetune.sh)/[log](https://drive.google.com/file/d/1jYAHPcs7zt_QMPM2D_geEWoWrf3yHox8/view?usp=sharing)/[checkpoint](https://drive.google.com/file/d/1xZCiaPF4w7lYmLt5o1D5tIZyDdLtJAvH/view?usp=sharing)<br />(w/o repeated aug) | 69.6  | 92.0  |
 | VideoMAE |  ***no***  |  ViT-B   | 2400  | 16x2x3  | [script](scripts/ssv2/videomae_vit_base_patch16_224_tubemasking_ratio_0.9_epoch_2400/pretrain.sh)/[log](https://drive.google.com/file/d/148nURgfcIFBQd3IQH5YhJ9dTwNCc2jkU/view?usp=sharing)/[checkpoint](https://drive.google.com/file/d/1I18dY_7rSalGL8fPWV82c0-foRUDzJJk/view?usp=sharing) | [script](scripts/ssv2/videomae_vit_base_patch16_224_tubemasking_ratio_0.9_epoch_2400/finetune.sh)/[log](https://drive.google.com/file/d/15TPBiUl_K2Q_9l6J41G_vf-2lovVLEHM/view?usp=sharing)/[checkpoint](https://drive.google.com/file/d/1dt_59tBIyzdZd5Ecr22lTtzs_64MOZkT/view?usp=sharing) | 70.8  | 92.4  |
 
+### UCF101
+
+|  Method  | Extra Data | Backbone | Epoch | \#Frame |                          Pre-train                           |                          Fine-tune                           | Top-1 | Top-5 |
+| :------: | :--------: | :------: | :---: | :-----: | :----------------------------------------------------------: | :----------------------------------------------------------: | :---: | :---: |
+| VideoMAE |  ***no***  |  ViT-B   |  3200  | 16x5x3  | [script](scripts/ucf101/videomae_vit_base_patch16_224_tubemasking_ratio_0.75_epoch_3200/pretrain.sh)/[log](https://drive.google.com/file/d/1kZODk_dQgB-aW6oIwPYZxqZAG6YKNtXC/view?usp=sharing)/[checkpoint](https://drive.google.com/file/d/1BHev4meNgKM0o_8DMRbuzAsKSP3IpQ3o/view?usp=sharing) | [script](scripts/ucf101/videomae_vit_base_patch16_224_tubemasking_ratio_0.75_epoch_3200/finetune.sh)/[log](https://drive.google.com/file/d/17Mq7rlM1TRgV4KKX7UIlmKw653RmwSqe/view?usp=sharing)/[checkpoint](https://drive.google.com/file/d/1MSyon6fPpKz7oqD6WDGPFK4k_Rbyb6fw/view?usp=sharing) | 91.3  | 98.5  |
+
 ### Note:
 
 - We report the results of VideoMAE finetuned with `I3D dense sampling` on **Kinetics400** and `TSN uniform sampling` on **Something-Something V2**, respectively.

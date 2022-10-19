@@ -38,6 +38,8 @@ def get_args():
     parser.add_argument('--input_size', default=224, type=int,
                         help='videos input size')
 
+    parser.add_argument('--fc_drop_rate', type=float, default=0.0, metavar='PCT',
+                        help='Dropout rate (default: 0.)')
     parser.add_argument('--drop', type=float, default=0.0, metavar='PCT',
                         help='Dropout rate (default: 0.)')
     parser.add_argument('--attn_drop_rate', type=float, default=0.0, metavar='PCT',
@@ -128,6 +130,8 @@ def get_args():
     parser.add_argument('--model_key', default='model|module', type=str)
     parser.add_argument('--model_prefix', default='', type=str)
     parser.add_argument('--init_scale', default=0.001, type=float)
+    parser.add_argument('--use_checkpoint', action='store_true')
+    parser.set_defaults(use_checkpoint=False)
     parser.add_argument('--use_mean_pooling', action='store_true')
     parser.set_defaults(use_mean_pooling=True)
     parser.add_argument('--use_cls', action='store_false', dest='use_mean_pooling')
@@ -302,10 +306,12 @@ def main(args, ds_init):
         num_classes=args.nb_classes,
         all_frames=args.num_frames * args.num_segments,
         tubelet_size=args.tubelet_size,
+        fc_drop_rate=args.fc_drop_rate,
         drop_rate=args.drop,
         drop_path_rate=args.drop_path,
         attn_drop_rate=args.attn_drop_rate,
         drop_block_rate=None,
+        use_checkpoint=args.use_checkpoint,
         use_mean_pooling=args.use_mean_pooling,
         init_scale=args.init_scale,
     )

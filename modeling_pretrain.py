@@ -2,12 +2,13 @@ import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
+import torch.utils.checkpoint as checkpoint
 from functools import partial
 
 from modeling_finetune import Block, _cfg, PatchEmbed, get_sinusoid_encoding_table
 from timm.models.registry import register_model
 from timm.models.layers import trunc_normal_ as __call_trunc_normal_
+
 
 
 def trunc_normal_(tensor, mean=0., std=1.):
@@ -17,6 +18,7 @@ def trunc_normal_(tensor, mean=0., std=1.):
 __all__ = [
     'pretrain_videomae_base_patch16_224', 
     'pretrain_videomae_large_patch16_224', 
+    'pretrain_videomae_huge_patch16_224',
 ]
 
 
@@ -25,7 +27,7 @@ class PretrainVisionTransformerEncoder(nn.Module):
     """
     def __init__(self, img_size=224, patch_size=16, in_chans=3, num_classes=0, embed_dim=768, depth=12,
                  num_heads=12, mlp_ratio=4., qkv_bias=False, qk_scale=None, drop_rate=0., attn_drop_rate=0.,
-                 drop_path_rate=0., norm_layer=nn.LayerNorm, init_values=None, tubelet_size=2,
+                 drop_path_rate=0., norm_layer=nn.LayerNorm, init_values=None, tubelet_size=2, use_checkpoint=False,
                  use_learnable_pos_emb=False):
         super().__init__()
         self.num_classes = num_classes
@@ -33,6 +35,8 @@ class PretrainVisionTransformerEncoder(nn.Module):
         self.patch_embed = PatchEmbed(
             img_size=img_size, patch_size=patch_size, in_chans=in_chans, embed_dim=embed_dim,tubelet_size=tubelet_size)
         num_patches = self.patch_embed.num_patches
+        self.use_checkpoint = use_checkpoint
+
 
         # TODO: Add the cls token
         if use_learnable_pos_emb:
@@ -89,8 +93,12 @@ class PretrainVisionTransformerEncoder(nn.Module):
         B, _, C = x.shape
         x_vis = x[~mask].reshape(B, -1, C) # ~mask means visible
 
-        for blk in self.blocks:
-            x_vis = blk(x_vis)
+        if self.use_checkpoint:
+            for blk in self.blocks:
+                x_vis = checkpoint.checkpoint(blk, x_vis)
+        else:   
+            for blk in self.blocks:
+                x_vis = blk(x_vis)
 
         x_vis = self.norm(x_vis)
         return x_vis
@@ -103,15 +111,17 @@ class PretrainVisionTransformerEncoder(nn.Module):
 class PretrainVisionTransformerDecoder(nn.Module):
     """ Vision Transformer with support for patch or hybrid CNN input stage
     """
-    def __init__(self, patch_size=16, num_classes=768, embed_dim=768, depth=12,
-                 num_heads=12, mlp_ratio=4., qkv_bias=False, qk_scale=None, drop_rate=0., attn_drop_rate=0.,
-                 drop_path_rate=0., norm_layer=nn.LayerNorm, init_values=None, num_patches=196, tubelet_size=2
+    def __init__(self, patch_size=16, num_classes=768, embed_dim=768, depth=12, num_heads=12, mlp_ratio=4.,
+                 qkv_bias=False, qk_scale=None, drop_rate=0., attn_drop_rate=0., drop_path_rate=0.,
+                 norm_layer=nn.LayerNorm, init_values=None, num_patches=196, tubelet_size=2, use_checkpoint=False
                  ):
         super().__init__()
         self.num_classes = num_classes
         assert num_classes == 3 * tubelet_size * patch_size ** 2 
         self.num_features = self.embed_dim = embed_dim  # num_features for consistency with other models
         self.patch_size = patch_size
+        self.use_checkpoint = use_checkpoint
+
 
         dpr = [x.item() for x in torch.linspace(0, drop_path_rate, depth)]  # stochastic depth decay rule
         self.blocks = nn.ModuleList([
@@ -150,8 +160,12 @@ class PretrainVisionTransformerDecoder(nn.Module):
         self.head = nn.Linear(self.embed_dim, num_classes) if num_classes > 0 else nn.Identity()
 
     def forward(self, x, return_token_num):
-        for blk in self.blocks:
-            x = blk(x)
+        if self.use_checkpoint:
+            for blk in self.blocks:
+                x = checkpoint.checkpoint(blk, x)
+        else:   
+            for blk in self.blocks:
+                x = blk(x)
 
         if return_token_num > 0:
             x = self.head(self.norm(x[:, -return_token_num:])) # only return the mask tokens predict pixels
@@ -184,6 +198,7 @@ class PretrainVisionTransformer(nn.Module):
                  norm_layer=nn.LayerNorm, 
                  init_values=0.,
                  use_learnable_pos_emb=False,
+                 use_checkpoint=False,
                  tubelet_size=2,
                  num_classes=0, # avoid the error from create_fn in timm
                  in_chans=0, # avoid the error from create_fn in timm
@@ -206,6 +221,7 @@ class PretrainVisionTransformer(nn.Module):
             norm_layer=norm_layer, 
             init_values=init_values,
             tubelet_size=tubelet_size,
+            use_checkpoint=use_checkpoint,
             use_learnable_pos_emb=use_learnable_pos_emb)
 
         self.decoder = PretrainVisionTransformerDecoder(
@@ -223,7 +239,8 @@ class PretrainVisionTransformer(nn.Module):
             drop_path_rate=drop_path_rate, 
             norm_layer=norm_layer, 
             init_values=init_values,
-            tubelet_size=tubelet_size)
+            tubelet_size=tubelet_size,
+            use_checkpoint=use_checkpoint)
 
         self.encoder_to_decoder = nn.Linear(encoder_embed_dim, decoder_embed_dim, bias=False)
 
@@ -324,6 +341,30 @@ def pretrain_videomae_large_patch16_224(pretrained=False, **kwargs):
         encoder_num_classes=0,
         decoder_num_classes=1536, 
         decoder_embed_dim=512,
+        decoder_num_heads=8,
+        mlp_ratio=4, 
+        qkv_bias=True,
+        norm_layer=partial(nn.LayerNorm, eps=1e-6), 
+        **kwargs)
+    model.default_cfg = _cfg()
+    if pretrained:
+        checkpoint = torch.load(
+            kwargs["init_ckpt"], map_location="cpu"
+        )
+        model.load_state_dict(checkpoint["model"])
+    return model
+
+@register_model
+def pretrain_videomae_huge_patch16_224(pretrained=False, **kwargs):
+    model = PretrainVisionTransformer(
+        img_size=224,
+        patch_size=16, 
+        encoder_embed_dim=1280, 
+        encoder_depth=32, 
+        encoder_num_heads=16,
+        encoder_num_classes=0,
+        decoder_num_classes=1536, 
+        decoder_embed_dim=640,
         decoder_num_heads=8,
         mlp_ratio=4, 
         qkv_bias=True,
