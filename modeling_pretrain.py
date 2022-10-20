@@ -16,6 +16,7 @@ def trunc_normal_(tensor, mean=0., std=1.):
 
 
 __all__ = [
+    'pretrain_videomae_small_patch16_224',
     'pretrain_videomae_base_patch16_224', 
     'pretrain_videomae_large_patch16_224', 
     'pretrain_videomae_huge_patch16_224',
@@ -283,7 +284,7 @@ class PretrainVisionTransformer(nn.Module):
         return x
 
 @register_model
-def pretrain_mae_small_patch16_224(pretrained=False, **kwargs):
+def pretrain_videomae_small_patch16_224(pretrained=False, **kwargs):
     model = PretrainVisionTransformer(
         img_size=224,
         patch_size=16,
