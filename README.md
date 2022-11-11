@@ -15,7 +15,7 @@
 ## 📰 News
 **[2022.10.20]** The pre-trained models and scripts of **ViT-S** and **ViT-H** are available! <br>
 **[2022.10.19]** The pre-trained models and scripts on **UCF101** are [available](MODEL_ZOO.md#UCF101)! <br>
-**[2022.9.15]** VideoMAE is accepted by **NeurIPS 2022** as a **spotlight**! 🎉 <br>
+**[2022.9.15]** VideoMAE is accepted by **NeurIPS 2022**! 🎉 <br>
 **[2022.8.8]** 👀 VideoMAE is integrated into [🤗HuggingFace Transformers](https://huggingface.co/docs/transformers/main/en/model_doc/videomae) now! [![Hugging Face Models](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-blue)](https://huggingface.co/models?other=videomae)<br>
 **[2022.7.7]**  We have updated new results on downstream AVA 2.2 benchmark. Please refer to our [paper](https://arxiv.org/abs/2203.12602) for details. <br>
 **[2022.4.24]**  Code and pre-trained models are available now! <br>
