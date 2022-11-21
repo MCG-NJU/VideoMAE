@@ -2,6 +2,7 @@
 
 ![VideoMAE Framework](figs/videomae.jpg)
 
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC_BY--NC_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Hugging Face Models](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-blue)](https://huggingface.co/models?other=videomae)<br>
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/videomae-masked-autoencoders-are-data-1/action-recognition-in-videos-on-something)](https://paperswithcode.com/sota/action-recognition-in-videos-on-something?p=videomae-masked-autoencoders-are-data-1)<br>
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/videomae-masked-autoencoders-are-data-1/action-classification-on-kinetics-400)](https://paperswithcode.com/sota/action-classification-on-kinetics-400?p=videomae-masked-autoencoders-are-data-1)<br>[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/videomae-masked-autoencoders-are-data-1/action-recognition-on-ava-v2-2)](https://paperswithcode.com/sota/action-recognition-on-ava-v2-2?p=videomae-masked-autoencoders-are-data-1)<br>
@@ -13,13 +14,13 @@
 > [Zhan Tong](https://github.com/yztongzhan), [Yibing Song](https://ybsong00.github.io/), [Jue Wang](https://juewang725.github.io/), [Limin Wang](http://wanglimin.github.io/)<br>Nanjing University, Tencent AI Lab
 
 ## 📰 News
+**[2022.11.20]** 👀 VideoMAE is integrated into [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/sayakpaul/video-classification-ucf101-subset) and [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/video_classification.ipynb), supported by [@Sayak Paul](https://github.com/sayakpaul).<br>
 **[2022.10.20]** The pre-trained models and scripts of **ViT-S** and **ViT-H** are available! <br>
 **[2022.10.19]** The pre-trained models and scripts on **UCF101** are [available](MODEL_ZOO.md#UCF101)! <br>
 **[2022.9.15]** VideoMAE is accepted by **NeurIPS 2022** as a **spotlight** presentation! 🎉 <br>
-**[2022.8.8]** 👀 VideoMAE is integrated into [🤗HuggingFace Transformers](https://huggingface.co/docs/transformers/main/en/model_doc/videomae) now! [![Hugging Face Models](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-blue)](https://huggingface.co/models?other=videomae)<br>
+**[2022.8.8]** 👀 VideoMAE is integrated into **official** [🤗HuggingFace Transformers](https://huggingface.co/docs/transformers/main/en/model_doc/videomae) now! [![Hugging Face Models](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-blue)](https://huggingface.co/models?other=videomae)<br>
 **[2022.7.7]**  We have updated new results on downstream AVA 2.2 benchmark. Please refer to our [paper](https://arxiv.org/abs/2203.12602) for details. <br>
 **[2022.4.24]**  Code and pre-trained models are available now! <br>
-**[2022.4.15]** The **[LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE)** of this project has been upgraded to CC-BY-NC 4.0.<br>
 **[2022.3.24]** ~~Code and pre-trained models will be released here.~~ Welcome to **watch** this repository for the latest updates.
 
 ## ✨ Highlights
