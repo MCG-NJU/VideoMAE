@@ -91,7 +91,7 @@ class GroupScale(object):
 class GroupMultiScaleCrop(object):
 
     def __init__(self, input_size, scales=None, max_distort=1, fix_crop=True, more_fix_crop=True):
-        self.scales = scales if scales is not None else [1, 875, .75, .66]
+        self.scales = scales if scales is not None else [1, .875, .75, .66]
         self.max_distort = max_distort
         self.fix_crop = fix_crop
         self.more_fix_crop = more_fix_crop
