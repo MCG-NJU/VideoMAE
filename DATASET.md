@@ -6,9 +6,9 @@ We have successfully pre-trained and fine-tuned our VideoMAE on [Kinetics400](ht
 
   1. Download the dataset from [official website](https://developer.qualcomm.com/software/ai-datasets/something-something).
 
-  2. Preprocess the dataset by changing the video extension from `webm` to `.mp4` with the **original** height of **240px**. We provide the pre-processing [script](scripts/data/data_clean.py) here.
+  2. Preprocess the dataset by changing the video extension from `webm` to `.mp4` with the **original** height of **240px**.
 
-  3. Generate annotations needed for dataloader ("<path_to_video> <video_class>" in annotations). The annotation usually includes `train.csv`, `val.csv` and `test.csv` ( here `test.csv` is the same as `val.csv`). The format of `*.csv` file is like:
+  3. Generate annotations needed for dataloader ("<path_to_video> <video_class>" in annotations). The annotation usually includes `train.csv`, `val.csv` and `test.csv` ( here `test.csv` is the same as `val.csv`). We **share** our annotation files (train.csv, val.csv, test.csv) via **[Google Drive](https://drive.google.com/drive/folders/1cfA-SrPhDB9B8ZckPvnh8D5ysCjD-S_I?usp=share_link)**. The format of `*.csv` file is like:
 
      ```
      dataset_root/video_1.mp4  label_1
