@@ -158,7 +158,9 @@ def main(args):
     num_tasks = utils.get_world_size()
     global_rank = utils.get_rank()
     sampler_rank = global_rank
-    num_training_steps_per_epoch = len(dataset_train) // args.batch_size // num_tasks
+
+    total_batch_size = args.batch_size * num_tasks
+    num_training_steps_per_epoch = len(dataset_train) // total_batch_size
 
     sampler_train = torch.utils.data.DistributedSampler(
         dataset_train, num_replicas=num_tasks, rank=sampler_rank, shuffle=True
@@ -187,8 +189,6 @@ def main(args):
 
     print("Model = %s" % str(model_without_ddp))
     print('number of params: {} M'.format(n_parameters / 1e6))
-
-    total_batch_size = args.batch_size * utils.get_world_size()
 
     args.lr = args.lr * total_batch_size / 256
     args.min_lr = args.min_lr * total_batch_size / 256
