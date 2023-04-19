@@ -9,14 +9,12 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/videomae-masked-autoencoders-are-data-1/self-supervised-action-recognition-on-ucf101)](https://paperswithcode.com/sota/self-supervised-action-recognition-on-ucf101?p=videomae-masked-autoencoders-are-data-1)<br>
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/videomae-masked-autoencoders-are-data-1/self-supervised-action-recognition-on-hmdb51)](https://paperswithcode.com/sota/self-supervised-action-recognition-on-hmdb51?p=videomae-masked-autoencoders-are-data-1)
 
-> [**VideoMAE V2: Scaling Video Masked Autoencoders with Dual Masking**](https://arxiv.org/abs/2303.16727)<br>
-> [Limin Wang](http://wanglimin.github.io/), [Bingkun Huang](https://github.com/congee524), [Zhiyu Zhao](https://github.com/JerryFlymi), [Zhan Tong](https://github.com/yztongzhan), Yinan He, Yi Wang, Yali Wang, Yu Qiao <br>Nanjing University, Shanghai AI Lab, CAS
-
 > [**VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training**](https://arxiv.org/abs/2203.12602)<br>
 > [Zhan Tong](https://github.com/yztongzhan), [Yibing Song](https://ybsong00.github.io/), [Jue Wang](https://juewang725.github.io/), [Limin Wang](http://wanglimin.github.io/)<br>Nanjing University, Tencent AI Lab
 
 ## 📰 News
-**[2023.4.3]** VideoMAE V2 is accepted by **CVPR 2023**! 🎉 ~~Code comming soon.~~ Code is already open source at [VideoMAEv2](https://github.com/OpenGVLab/VideoMAEv2)! <br>
+**[2023.4.3]** Code and pre-trained models of [VideoMAE V2](https://arxiv.org/abs/2303.16727) has been released! Check and enjoy this [repo](https://github.com/OpenGVLab/VideoMAEv2)!<br>
+**[2023.2.28]** [VideoMAE V2](https://arxiv.org/abs/2303.16727) is accepted by **CVPR 2023**! 🎉<br>
 **[2023.1.16]** Code and pre-trained models for Action Detection are [available](https://github.com/MCG-NJU/VideoMAE-Action-Detection)! <br>
 **[2022.11.20]** 👀 VideoMAE is integrated into [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/sayakpaul/video-classification-ucf101-subset) and [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/video_classification.ipynb), supported by [@Sayak Paul](https://github.com/sayakpaul).<br>
 **[2022.10.25]** 👀 VideoMAE is integrated into [MMAction2](https://github.com/open-mmlab/mmaction2/tree/dev-1.x/configs/recognition/videomae), the results  on Kinetics-400 can be reproduced successfully. <br>
