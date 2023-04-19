@@ -13,6 +13,7 @@
 > [Zhan Tong](https://github.com/yztongzhan), [Yibing Song](https://ybsong00.github.io/), [Jue Wang](https://juewang725.github.io/), [Limin Wang](http://wanglimin.github.io/)<br>Nanjing University, Tencent AI Lab
 
 ## 📰 News
+**[2023.4.18]** 🎈Everyone can download **Kinetics-400**, which is used in VideoMAE, from [this link](https://opendatalab.com/Kinetics-400).<br>
 **[2023.4.18]** Code and pre-trained models of [VideoMAE V2](https://arxiv.org/abs/2303.16727) have been released! Check and enjoy this [repo](https://github.com/OpenGVLab/VideoMAEv2)!<br>
 **[2023.4.17]** We propose **[EVAD](https://arxiv.org/abs/2304.08451)**, an **end-to-end Video Action Detection** framework.<br>
 **[2023.2.28]** Our [VideoMAE V2](https://arxiv.org/abs/2303.16727) is accepted by **CVPR 2023**! 🎉<br>
