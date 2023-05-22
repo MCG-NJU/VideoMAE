@@ -268,7 +268,9 @@ def main(args, ds_init):
         drop_last=True,
         collate_fn=collate_func,
     )
-
+    
+    num_training_steps_per_epoch = len(data_loader_train)
+    
     if dataset_val is not None:
         data_loader_val = torch.utils.data.DataLoader(
             dataset_val, sampler=sampler_val,
@@ -290,7 +292,7 @@ def main(args, ds_init):
         )
     else:
         data_loader_test = None
-
+    
     mixup_fn = None
     mixup_active = args.mixup > 0 or args.cutmix > 0. or args.cutmix_minmax is not None
     if mixup_active:
@@ -402,7 +404,7 @@ def main(args, ds_init):
     print('number of params:', n_parameters)
 
     total_batch_size = args.batch_size * args.update_freq * utils.get_world_size()
-    num_training_steps_per_epoch = len(dataset_train) // total_batch_size
+
     args.lr = args.lr * total_batch_size / 256
     args.min_lr = args.min_lr * total_batch_size / 256
     args.warmup_lr = args.warmup_lr * total_batch_size / 256
