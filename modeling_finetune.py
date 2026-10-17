@@ -190,8 +190,8 @@ class VisionTransformer(nn.Module):
                  drop_path_rate=0., 
                  norm_layer=nn.LayerNorm, 
                  init_values=0.,
-                 use_learnable_pos_emb=False, 
-                 init_scale=0.,
+                 use_learnable_pos_emb=False,
+                 init_scale=0., 
                  all_frames=16,
                  tubelet_size=2,
                  use_checkpoint=False,
@@ -232,8 +232,9 @@ class VisionTransformer(nn.Module):
         trunc_normal_(self.head.weight, std=.02)
         self.apply(self._init_weights)
 
-        self.head.weight.data.mul_(init_scale)
-        self.head.bias.data.mul_(init_scale)
+        #self.head.weight.data.mul_(init_scale)
+        #self.head.bias.data.mul_(init_scale)
+
 
     def _init_weights(self, m):
         if isinstance(m, nn.Linear):

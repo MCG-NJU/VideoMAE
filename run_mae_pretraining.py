@@ -44,7 +44,7 @@ def get_args():
     parser.add_argument('--normlize_target', default=True, type=bool,
                         help='normalized the target patch pixels')
 
-    # Optimizer parameters
+    # optimizer parameter
     parser.add_argument('--opt', default='adamw', type=str, metavar='OPTIMIZER',
                         help='Optimizer (default: "adamw"')
     parser.add_argument('--opt_eps', default=1e-8, type=float, metavar='EPSILON',

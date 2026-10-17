@@ -12,7 +12,10 @@ from pathlib import Path
 import subprocess
 import torch
 import torch.distributed as dist
-from torch._six import inf
+#from torch._six import inf
+import math
+inf = math.inf
+
 import random
 
 from tensorboardX import SummaryWriter
@@ -42,7 +45,7 @@ class SmoothedValue(object):
         """
         if not is_dist_avail_and_initialized():
             return
-        t = torch.tensor([self.count, self.total], dtype=torch.float64, device='cuda')
+        t = torch.tensor([self.count, self.total], dtype=torch.float64, device='torch.cuda.amp.autocast')
         dist.barrier()
         dist.all_reduce(t)
         t = t.tolist()
@@ -342,7 +345,7 @@ class NativeScalerWithGradNormCount:
     state_dict_key = "amp_scaler"
 
     def __init__(self):
-        self._scaler = torch.cuda.amp.GradScaler()
+        self._scaler = torch.cuda.amp.GradScaler(device_type='cuda')
 
     def __call__(self, loss, optimizer, clip_grad=None, parameters=None, create_graph=False, update_grad=True):
         self._scaler.scale(loss).backward(create_graph=create_graph)
@@ -402,29 +405,27 @@ def cosine_scheduler(base_value, final_value, epochs, niter_per_ep, warmup_epoch
     return schedule
 
 
-def save_model(args, epoch, model, model_without_ddp, optimizer, loss_scaler, model_ema=None):
+def save_model(args, epoch, model, model_without_ddp, optimizer, loss_scaler=None, model_ema=None):
     output_dir = Path(args.output_dir)
-    epoch_name = str(epoch)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    checkpoint_path = output_dir / f"checkpoint-{epoch}.pth"
+
+    to_save = {
+        'model': model_without_ddp.state_dict(),
+        'optimizer': optimizer.state_dict(),
+        'epoch': epoch,
+        'args': args,
+    }
+
+    if model_ema is not None:
+        to_save['model_ema'] = get_state_dict(model_ema)
+
+    # No AMP → no scaler
     if loss_scaler is not None:
-        checkpoint_paths = [output_dir / ('checkpoint-%s.pth' % epoch_name)]
-        for checkpoint_path in checkpoint_paths:
-            to_save = {
-                'model': model_without_ddp.state_dict(),
-                'optimizer': optimizer.state_dict(),
-                'epoch': epoch,
-                'scaler': loss_scaler.state_dict(),
-                'args': args,
-            }
+        to_save['scaler'] = loss_scaler.state_dict()
 
-            if model_ema is not None:
-                to_save['model_ema'] = get_state_dict(model_ema)
-
-            save_on_master(to_save, checkpoint_path)
-    else:
-        client_state = {'epoch': epoch}
-        if model_ema is not None:
-            client_state['model_ema'] = get_state_dict(model_ema)
-        model.save_checkpoint(save_dir=args.output_dir, tag="checkpoint-%s" % epoch_name, client_state=client_state)
+    save_on_master(to_save, checkpoint_path)
 
 
 def auto_load_model(args, model, model_without_ddp, optimizer, loss_scaler, model_ema=None):

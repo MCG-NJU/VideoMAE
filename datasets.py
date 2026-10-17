@@ -177,6 +177,43 @@ def build_dataset(is_train, test_mode, args):
             new_width=320,
             args=args)
         nb_classes = 51
+    elif args.data_set == 'UCF-CRIME':
+        '''
+        ساختن تنظیمات مخصوص ویدیو 
+        '''
+        mode = None
+        anno_path = None
+
+        if is_train:
+            mode = 'train'
+            anno_path = os.path.join(args.data_path, 'train.csv')
+        elif test_mode:
+            mode = 'test'
+            anno_path = os.path.join(args.data_path, 'test.csv')
+        else:
+            mode = 'validation'
+            anno_path = os.path.join(args.data_path, 'val.csv')
+
+        dataset = VideoClsDataset(
+            anno_path=anno_path,
+            data_path=args.data_path,    
+            mode=mode,
+            clip_len=args.num_frames, #num frames
+            frame_sample_rate=args.sampling_rate, #sample rate
+            num_segment=1, 
+            test_num_segment=args.test_num_segment, # give multi crop spatial : center ,corner , multi crop
+            test_num_crop=args.test_num_crop,
+            num_crop=1 if not test_mode else 3, #تا مدل رو چند بخش تست بشه
+            keep_aspect_ratio=True,#جلوگیری از کشیده شدن تصویر 
+            crop_size=args.input_size, #224*224
+            short_side_size=args.short_side_size,
+            new_height=256,
+            new_width=320,
+            args=args
+        )
+
+        nb_classes = 4  
+
     else:
         raise NotImplementedError()
     assert nb_classes == args.nb_classes

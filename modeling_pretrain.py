@@ -273,7 +273,7 @@ class PretrainVisionTransformer(nn.Module):
         x_vis = self.encoder(x, mask) # [B, N_vis, C_e]
         x_vis = self.encoder_to_decoder(x_vis) # [B, N_vis, C_d]
         B, N, C = x_vis.shape
-        # we don't unshuffle the correct visible token order, 
+        # we dont unshuffle the correct visible token order, 
         # but shuffle the pos embedding accorddingly.
         expand_pos_embed = self.pos_embed.expand(B, -1, -1).type_as(x).to(x.device).clone().detach()
         pos_emd_vis = expand_pos_embed[~mask].reshape(B, -1, C)

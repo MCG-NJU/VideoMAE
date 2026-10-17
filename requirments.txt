@@ -1,0 +1,16 @@
+torch 
+torchvision 
+torchaudio
+tensorboard
+scipy
+timm==0.4.12
+tensorboardX
+decord
+einops
+opencv-python
+yacs 
+fvcore
+scikit-learn
+matplotlib
+pandas 
+pyyaml
